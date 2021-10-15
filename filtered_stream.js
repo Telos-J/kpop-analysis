@@ -18,13 +18,13 @@ const streamURL = 'https://api.twitter.com/2/tweets/search/stream';
 
 // Edit rules as desired below
 const rules = [{
-        'value': 'dog has:images -is:retweet',
-        'tag': 'dog pictures'
-    },
-    {
-        'value': 'cat has:images -grumpy',
-        'tag': 'cat pictures'
-    },
+    'value': 'dog has:images -is:retweet',
+    'tag': 'dog pictures'
+},
+{
+    'value': 'cat has:images -grumpy',
+    'tag': 'cat pictures'
+},
 ];
 
 async function getAllRules() {
