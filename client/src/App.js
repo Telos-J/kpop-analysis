@@ -6,9 +6,10 @@ function App() {
     const [message, setMessage] = useState('')
 
     const fetchMessage = async () => {
-        const res = await fetch('/api')
-        const message = await res.text()
-        setMessage(message)
+        const res = await fetch('/recent-search')
+        const tweets = await res.json()
+        console.log(tweets)
+        //setMessage(message)
     }
 
     useEffect(() => {
