@@ -4,7 +4,8 @@
   "description": "Working in progress app for analyzing K-pop trends from twitter stream data",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
   },
   "repository": {
     "type": "git",
