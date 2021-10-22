@@ -24,10 +24,10 @@ function App() {
             </header>
             <main>
                 {
-                    tweets.length ?
-                        tweets.map((tweet) => (
-                            <Tweet key={tweet.id} id={tweet.id} />
-                        )) : <p>There are no tweets!</p>
+                    tweets.length &&
+                    tweets.map((tweet) => (
+                        <Tweet key={tweet.id} id={tweet.id} />
+                    ))
                 }
             </main>
         </div>
