@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import Tweet from './components/Tweet'
 import logo from './logo.svg'
 import './App.css';
 
 function App() {
-    const [message, setMessage] = useState('')
+    const [tweets, setTweets] = useState([])
 
     const fetchMessage = async () => {
         const res = await fetch('/recent-search')
-        const tweets = await res.json()
-        console.log(tweets)
-        //setMessage(message)
+        const newTweets = await res.json()
+        console.log(newTweets)
+        setTweets(prev => [...prev, ...newTweets])
     }
 
     useEffect(() => {
@@ -20,8 +21,15 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>{message}</p>
             </header>
+            <main>
+                {
+                    tweets.length ?
+                        tweets.map((tweet) => (
+                            <Tweet key={tweet.id} id={tweet.id} />
+                        )) : <p>There are no tweets!</p>
+                }
+            </main>
         </div>
     );
 }
