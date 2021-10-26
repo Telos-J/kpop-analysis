@@ -7,7 +7,7 @@ function App() {
     const [tweets, setTweets] = useState([])
 
     const fetchMessage = async () => {
-        const res = await fetch('/recent-search')
+        const res = await fetch('twitter/recent-search')
         const newTweets = await res.json()
         console.log(newTweets)
         setTweets(prev => [...prev, ...newTweets])
