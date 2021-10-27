@@ -29,10 +29,12 @@ async function insertTweets(data) {
     try {
         const values = []
         for (const tweet of data) values.push([tweet.id, tweet.text])
+        console.log(values)
         const query = format('INSERT INTO tweets (id, text) VALUES %L', values)
-        await pool.query(query)
+        const res = await pool.query(query)
+        console.log(res)
     } catch (err) {
-        console.log(err.message)
+        console.log(`ERROR!!! ${err.message}`)
     }
 }
 
