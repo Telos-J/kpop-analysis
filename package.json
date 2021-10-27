@@ -22,7 +22,9 @@
   "homepage": "https://github.com/Telos-J/kpop-analysis#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "needle": "^3.0.0"
+    "needle": "^3.0.0",
+    "pg": "^8.7.1",
+    "pg-format": "^1.0.4"
   },
   "devDependencies": {
     "concurrently": "^6.3.0",
