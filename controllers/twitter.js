@@ -7,8 +7,10 @@ async function getRecentSearch(req, res) {
         const endpointUrl = "https://api.twitter.com/2/tweets/search/recent"
         const params = {
             'query': 'twice',
-            'max_results': 10,
-            'tweet.fields': 'entities,created_at'
+            'max_results': 100,
+            'tweet.fields': 'entities,created_at',
+            //'start_time': '2021-11-05T00:00:00Z',
+            'end_time': '2021-11-05T23:59:59Z'
         }
 
         const searchRes = await needle('get', endpointUrl, params, {
@@ -18,7 +20,8 @@ async function getRecentSearch(req, res) {
             }
         })
 
-        insertTweets(searchRes.body.data)
+        //insertTweets(searchRes.body.data)
+        retrieveTweets('2021-11-12')
         res.json(searchRes.body.data)
     } catch (err) {
         console.log(err.message)
@@ -43,6 +46,17 @@ async function insertTweets(data) {
         console.log(`ERROR!!! ${err.message}`)
     }
 }
+
+async function retrieveTweets(date) {
+    try {
+        const text = 'SELECT hashtag, COUNT(hashtag) FROM hashtags WHERE created_at LIKE $1 GROUP BY 1 ORDER BY 2 DESC LIMIT 10'
+        const values = [date + '%']
+        const res = await pool.query(text, values)
+        console.log(res)
+      }  catch(err) {
+            console.log('ERROR!!${err.message}')
+        }
+    }
 
 module.exports = {
     getRecentSearch
