@@ -7,10 +7,15 @@ function App() {
     const [tweets, setTweets] = useState([])
 
     const fetchMessage = async () => {
-        const res = await fetch('twitter/recent-search')
-        const newTweets = await res.json()
-        console.log(newTweets)
-        setTweets(prev => [...prev, ...newTweets])
+        try {
+            const res = await fetch('twitter/recent-search')
+            console.log(res)
+            const newTweets = await res.json()
+            console.log(newTweets)
+            setTweets(prev => [...prev, ...newTweets])
+        } catch(err) {
+            console.log(err.message)
+        }
     }
 
     useEffect(() => {

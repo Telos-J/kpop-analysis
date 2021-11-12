@@ -8,7 +8,7 @@ async function getRecentSearch(req, res) {
         const params = {
             'query': 'twice',
             'max_results': 10,
-            'tweet.fields': 'entities'
+            'tweet.fields': 'entities,created_at'
         }
 
         const searchRes = await needle('get', endpointUrl, params, {
@@ -28,9 +28,15 @@ async function getRecentSearch(req, res) {
 async function insertTweets(data) {
     try {
         const values = []
-        for (const tweet of data) values.push([tweet.id, tweet.text])
-        console.log(values)
-        const query = format('INSERT INTO tweets (id, text) VALUES %L', values)
+        for (const tweet of data) {
+            console.log(tweet)
+            if (!tweet.entities?.hashtags) continue
+            for (const hashtag of tweet.entities.hashtags) {
+                values.push([tweet.id, hashtag.tag, tweet.created_at])
+            }
+        }
+        
+        const query = format('INSERT INTO hashtags (tweet_id, hashtag, created_at) VALUES %L', values)
         const res = await pool.query(query)
         console.log(res)
     } catch (err) {
