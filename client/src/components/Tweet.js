@@ -4,7 +4,7 @@ import { TwitterTweetEmbed } from "react-twitter-embed";
 const Tweet = ({ id }) => {
     const options = {
         align: "center",
-        width: "550",
+        width: "400",
         conversation: "none",
     };
 

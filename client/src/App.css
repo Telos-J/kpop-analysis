@@ -6,8 +6,6 @@ html {
     min-height: 100vh;
     flex-direction: column;
     display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .App-header {
@@ -38,5 +36,10 @@ html {
 }
 
 .App-main {
+    display: flex;
     width: 100%;
+}
+
+.App-main > * {
+    width: 50%;
 }

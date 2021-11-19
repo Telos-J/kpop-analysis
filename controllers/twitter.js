@@ -7,10 +7,10 @@ async function getRecentSearch(req, res) {
         const endpointUrl = "https://api.twitter.com/2/tweets/search/recent"
         const params = {
             'query': 'twice',
-            'max_results': 100,
+            'max_results': 10,
             'tweet.fields': 'entities,created_at',
             //'start_time': '2021-11-05T00:00:00Z',
-            'end_time': '2021-11-05T23:59:59Z'
+            //'end_time': '2021-11-05T23:59:59Z'
         }
 
         const searchRes = await needle('get', endpointUrl, params, {
@@ -21,7 +21,6 @@ async function getRecentSearch(req, res) {
         })
 
         //insertTweets(searchRes.body.data)
-        retrieveTweets('2021-11-12')
         res.json(searchRes.body.data)
     } catch (err) {
         console.log(err.message)
@@ -55,7 +54,7 @@ async function retrieveTweets(req, res) {
         const result = await pool.query(text, values)
         res.json(result.rows)
       }  catch(err) {
-            console.log('ERROR!!${err.message}')
+            console.log(`ERROR!!${err.message}`)
         }
     }
 
