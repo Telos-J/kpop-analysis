@@ -28,7 +28,7 @@ async function getRecentSearch(req, res) {
     }
 }
 
-async function insertTweets(data) {
+async function insertTweets(req, res) {
     try {
         const values = []
         for (const tweet of data) {
@@ -47,17 +47,19 @@ async function insertTweets(data) {
     }
 }
 
-async function retrieveTweets(date) {
+async function retrieveTweets(req, res) {
     try {
-        const text = 'SELECT hashtag, COUNT(hashtag) FROM hashtags WHERE created_at LIKE $1 GROUP BY 1 ORDER BY 2 DESC LIMIT 10'
-        const values = [date + '%']
-        const res = await pool.query(text, values)
-        console.log(res)
+        const text = 
+            'SELECT hashtag, COUNT(hashtag) FROM hashtags WHERE created_at LIKE $1 GROUP BY 1 ORDER BY 2 DESC LIMIT 10'
+        const values = [req.query.date + '%']
+        const result = await pool.query(text, values)
+        res.json(result.rows)
       }  catch(err) {
             console.log('ERROR!!${err.message}')
         }
     }
 
 module.exports = {
-    getRecentSearch
+    getRecentSearch,
+    retrieveTweets,
 }

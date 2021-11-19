@@ -8,11 +8,14 @@ function App() {
 
     const fetchMessage = async () => {
         try {
-            const res = await fetch('twitter/recent-search')
-            console.log(res)
-            const newTweets = await res.json()
-            console.log(newTweets)
-            setTweets(prev => [...prev, ...newTweets])
+            //const res = await fetch('twitter/recent-search')
+            //console.log(res)
+            //const newTweets = await res.json()
+            //console.log(newTweets)
+           // setTweets(prev => [...prev, ...newTweets])
+           const res = await fetch('twitter/retrieve-tweets?date=2021-11-12')
+           const rows = await res.json()
+           console.log(rows)
         } catch(err) {
             console.log(err.message)
         }
