@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TweetList from './components/TweetList'
-import Chart from './components/Chart'
+import TweetChart from './components/TweetChart'
 import logo from './logo.svg'
 import './App.css';
 
@@ -12,7 +12,7 @@ function App() {
             </header>
             <main className="App-main">
                 <TweetList />
-                <Chart />
+                <TweetChart />
             </main>
         </div>
     )
