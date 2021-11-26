@@ -29,23 +29,59 @@ function TweetChart() {
           data: [12, 19, 3, 5, 2, 3],
           fill: false,
           backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgb(255, 99, 132)',
         },
       ],
     })
 
     const [options, setOptions] = useState({
+      layout: {
+        padding: {
+          top: 20,
+          left: 50,
+          right: 50,
+        },
+      },
+      plugins: {
+        legend: {
+            display: true,
+            labels: {
+                color: 'black',
+            },
+        },
+    },
       scales: {
+          x: {
+            ticks: {
+              color: 'black'
+            },
+          },
           y: {
-              beginAtZero: true,
+              ticks: {
+                color: 'black'
+              },
           },
       },
     })
 
     const fetchMessage = async () => {
         try {
-           const res = await fetch('twitter/retrieve-tweets?date=2021-11-12')
+           const res = await fetch('twitter/retrieve-tweets?date=2021-11-06')
            const rows = await res.json()
+           console.log()
+           setData(prev => ({
+            labels: rows.map(row => row.hashtag),
+            datasets: [
+              {
+                label: 'Hashtag Frequency',
+                data: rows.map(row => row.count),
+                fill: false,
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+              },
+            ],
+          }))
+
            console.log(rows)
         } catch(err) {
             console.log(err.message)
