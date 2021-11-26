@@ -56,7 +56,13 @@ function TweetChart() {
         fetchMessage()
     }, [])
 
-    return <Line className="tweet-chart" data={data} options={options} />  
+    return (
+      <div className="tweet-chart-container">
+        <div className="tweet-chart">
+             <Line data={data} options={options} />
+         </div>
+      </div>  
+    )
 }
 
 export default TweetChart

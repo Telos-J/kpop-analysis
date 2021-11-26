@@ -43,3 +43,17 @@ html {
 .App-main > * {
     width: 50%;
 }
+
+.twitter-tweet 
+{
+    max-width: 40vw !important;
+}
+
+.tweet-chart-container {
+    display: flex;
+    justify-content: center;
+}
+
+.tweet-chart {
+    width: 40vw;
+}
