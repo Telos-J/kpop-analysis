@@ -1,3 +1,5 @@
+@import 'twitter.scss';
+
 html {
     background-color: #282c34;
 }
@@ -42,23 +44,4 @@ html {
 
 .App-main > * {
     width: 50%;
-}
-
-.twitter-tweet 
-{
-    margin: 0 auto !important;
-    max-width: 40vw !important;
-}
-
-.tweet-chart-container {
-    display: flex;
-    justify-content: center;
-}
-
-.tweet-chart {
-    background-color: white;
-    border: 1px solid #cfd9dd;
-    border-radius: 15px;
-    width: 40vw;
-    height: 30vw;
 }

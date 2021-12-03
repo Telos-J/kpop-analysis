@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import TweetList from './components/TweetList'
 import TweetChart from './components/TweetChart'
 import logo from './logo.svg'
-import './App.css';
+import './styles/App.scss'
 
 function App() {
     return (
@@ -18,4 +18,4 @@ function App() {
     )
 }
 
-export default App;
+export default App

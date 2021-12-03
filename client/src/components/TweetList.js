@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import Tweet from './Tweet'
 
 function TweetList() {
@@ -6,9 +6,9 @@ function TweetList() {
 
     const fetchMessage = async () => {
         try {
-           const res = await fetch('twitter/recent-search')
-           const newTweets = await res.json()
-           setTweets(prev => [...prev, ...newTweets])
+            const res = await fetch('twitter/recent-search')
+            const newTweets = await res.json()
+            setTweets(prev => [...prev, ...newTweets])
         } catch (err) {
             console.log(err.message)
         }
@@ -18,16 +18,12 @@ function TweetList() {
         fetchMessage()
     }, [])
 
-    return(
-       <div className="tweet-list">
-            {
-                tweets.length &&
-                tweets.map((tweet) => (
-                    <Tweet key={tweet.id} id={tweet.id} />
-                ))
-            }
+    return (
+        <div className="tweet-list">
+            {tweets.length && tweets.map(tweet => <Tweet key={tweet.id} id={tweet.id} />)}
         </div>
     )
 }
 
 export default TweetList
+

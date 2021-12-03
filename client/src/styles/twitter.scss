@@ -1,0 +1,34 @@
+.tweet-list {
+    div + div {
+        margin-top: 10px;
+    }
+
+    .twitter-tweet {
+        margin: 0 auto !important;
+        max-width: 40vw !important;
+    }
+}
+
+.tweet-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .tweet-chart-card {
+        background-color: white;
+        border: 1px solid #cfd9dd;
+        border-radius: 15px;
+        width: 40vw;
+
+        .tweet-chart {
+            width: 40vw;
+            height: 30vw;
+        }
+
+        .tweet-chart-controls {
+            display: flex;
+            padding: 1rem;
+            justify-content: center;
+        }
+    }
+}
