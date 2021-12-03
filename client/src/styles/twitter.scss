@@ -20,6 +20,10 @@
         border-radius: 15px;
         width: 40vw;
 
+        & + .tweet-chart-card {
+            margin-top: 10px;
+        }
+
         .tweet-chart {
             width: 40vw;
             height: 30vw;

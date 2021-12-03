@@ -5,26 +5,26 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
-function TweetChartControls({ dates, date, setDate }) {
+function TweetChartControls({ values, value, setValue, label }) {
     const handleChange = event => {
-        setDate(event.target.value)
+        setValue(event.target.value)
     }
 
     return (
         <div className="tweet-chart-controls">
             <Box sx={{ width: '20vw' }}>
                 <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Date</InputLabel>
+                    <InputLabel id="demo-simple-select-label">{label}</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={date}
-                        label="Date"
+                        value={value}
+                        label={label}
                         onChange={handleChange}
                     >
-                        {dates.map(date => (
-                            <MenuItem key={date} value={date}>
-                                {date}
+                        {values.map(value => (
+                            <MenuItem key={value} value={value}>
+                                {value}
                             </MenuItem>
                         ))}
                     </Select>
