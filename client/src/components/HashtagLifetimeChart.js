@@ -14,11 +14,11 @@ import TweetChartControls from './TweetChartControls'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
-function HashtagLifetimeChart({ options }) {
+function HashtagLifetimeChart({ options, batchSize }) {
     options.plugins.title.text = 'Hashtag Lifetime'
 
-    const [hashtags, setHashtags] = React.useState([])
-    const [hashtag, setHashtag] = React.useState('')
+    const [hashtags, setHashtags] = useState([])
+    const [hashtag, setHashtag] = useState('')
     const [data, setData] = useState({
         labels: [],
         datasets: [
@@ -44,7 +44,9 @@ function HashtagLifetimeChart({ options }) {
 
     const fetchMessage = async () => {
         try {
-            const res = await fetch(`twitter/retrieve-tweets-by-hashtag?hashtag=${hashtag}`)
+            const res = await fetch(
+                `twitter/retrieve-tweets-by-hashtag?hashtag=${hashtag}&batchSize=${batchSize}`
+            )
             const rows = await res.json()
             setData(prev => ({
                 labels: rows.map(row => row.date),

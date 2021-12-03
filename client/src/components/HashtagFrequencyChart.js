@@ -14,11 +14,11 @@ import TweetChartControls from './TweetChartControls'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
-function HashtagFrequencyChart({ options }) {
+function HashtagFrequencyChart({ options, batchSize }) {
     options.plugins.title.text = 'Hashtag Frequency by Date'
 
-    const dates = ['2021-11-18', '2021-11-19']
-    const [date, setDate] = React.useState(dates[0])
+    const [dates, setDates] = useState([])
+    const [date, setDate] = useState('')
     const [data, setData] = useState({
         labels: [],
         datasets: [
@@ -30,9 +30,23 @@ function HashtagFrequencyChart({ options }) {
         ],
     })
 
+    const fetchDates = async () => {
+        const res = await fetch(`twitter/retrieve-date-list?batchSize=${batchSize}`)
+        const rows = await res.json()
+
+        setDates(prev => rows.map(row => row.date))
+        setDate(prev => rows[0].date)
+    }
+
+    useEffect(() => {
+        fetchDates()
+    }, [])
+
     const fetchMessage = async () => {
         try {
-            const res = await fetch(`twitter/retrieve-tweets-by-date?date=${date}`)
+            const res = await fetch(
+                `twitter/retrieve-tweets-by-date?date=${date}&batchSize=${batchSize}`
+            )
             const rows = await res.json()
             setData(prev => ({
                 labels: rows.map(row => row.hashtag),
