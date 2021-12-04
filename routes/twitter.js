@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const { getRecentSearch } = require('../controllers/recentSearch')
 const {
-    getRecentSearch,
     retrieveTweetsByDate,
     retrieveTweetsByHashtag,
     retrieveHashtagList,
