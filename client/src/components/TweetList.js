@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Tweet from './Tweet'
+import socketIOClient from 'socket.io-client'
 
 function TweetList() {
     const [tweets, setTweets] = useState([])
@@ -9,6 +10,11 @@ function TweetList() {
             const res = await fetch('twitter/recent-search')
             const newTweets = await res.json()
             setTweets(prev => [...prev, ...newTweets])
+
+            const socket = socketIOClient('/')
+            socket.on('connect', () => {
+                console.log('new connection')
+            })
         } catch (err) {
             console.log(err.message)
         }
