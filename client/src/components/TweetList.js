@@ -16,7 +16,7 @@ function TweetList() {
                 console.log('new connection')
             })
             socket.on('tweet', json => {
-                if (json.data) setTweets(prev => [...prev, json.data])
+                if (json.data) setTweets(prev => [json.data, ...prev])
             })
         } catch (err) {
             console.log(err.message)
