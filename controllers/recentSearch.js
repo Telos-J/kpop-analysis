@@ -1,5 +1,5 @@
 const needle = require('needle')
-const { insertTweets } = require ('./twitter')
+const { insertHashtagsFromTweets } = require('./twitter')
 
 async function getRecentSearch(req, res) {
     try {
@@ -19,7 +19,7 @@ async function getRecentSearch(req, res) {
             },
         })
 
-        insertTweets(searchRes.body.data)
+        insertHashtagsFromTweets(searchRes.body.data)
         res.json(searchRes.body.data)
     } catch (err) {
         console.log(err.message)
@@ -27,3 +27,4 @@ async function getRecentSearch(req, res) {
 }
 
 module.exports = { getRecentSearch }
+

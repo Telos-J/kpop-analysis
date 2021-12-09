@@ -21,11 +21,12 @@ const PORT = process.env.PORT || 5000
 app.use('/twitter', twitterRouter)
 app.use('/', indexRouter)
 
+streamTweets(io)
+
 io.on('connection', async socket => {
     console.log('new connection')
     const data = { id: '1461555817405194242' }
     io.emit('tweet', data)
-    streamTweets(io)
 })
 
 server.listen(PORT, () => {

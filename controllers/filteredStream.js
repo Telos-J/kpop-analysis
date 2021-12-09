@@ -1,7 +1,9 @@
 const needle = require('needle')
+const { insertTweet, insertHashtagsFromTweet } = require('./twitter')
 
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules'
-const streamURL = 'https://api.twitter.com/2/tweets/search/stream'
+const streamURL =
+    'https://api.twitter.com/2/tweets/search/stream?tweet.fields=entities%2Ccreated_at'
 
 const rules = [{ value: 'twice' }]
 
@@ -79,8 +81,9 @@ function streamConnect(retryAttempt, io) {
         .on('data', data => {
             try {
                 const json = JSON.parse(data)
-                console.log(json)
-                io.emit('tweet', json)
+                insertTweet(json.data)
+                insertHashtagsFromTweet(json.data)
+                //io.emit('tweet', json)
                 retryAttempt = 0
             } catch (e) {
                 if (
@@ -125,4 +128,3 @@ async function streamTweets(io) {
 }
 
 module.exports = { streamTweets }
-

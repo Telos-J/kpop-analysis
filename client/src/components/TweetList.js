@@ -7,17 +7,17 @@ function TweetList() {
 
     const fetchMessage = async () => {
         try {
-            //const res = await fetch('twitter/recent-search')
-            //const newTweets = await res.json()
-            //setTweets(prev => [...prev, ...newTweets])
+            const res = await fetch('twitter/retrieve-tweets')
+            const newTweets = await res.json()
+            setTweets(prev => [...prev, ...newTweets])
 
             const socket = socketIOClient('/')
             socket.on('connect', () => {
                 console.log('new connection')
             })
-            socket.on('tweet', json => {
-                if (json.data) setTweets(prev => [json.data, ...prev])
-            })
+            //socket.on('tweet', json => {
+            //    if (json.data) setTweets(prev => [json.data, ...prev])
+            //})
         } catch (err) {
             console.log(err.message)
         }

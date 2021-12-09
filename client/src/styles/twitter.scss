@@ -1,4 +1,7 @@
 .tweet-list {
+    overflow: scroll;
+    max-height: 100vw;
+
     div + div {
         margin-top: 10px;
     }

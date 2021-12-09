@@ -19,6 +19,7 @@ function HashtagLifetimeChart({ options, batchSize }) {
 
     const [hashtags, setHashtags] = useState([])
     const [hashtag, setHashtag] = useState('')
+    const [timespan, setTimespan] = useState(2)
     const [data, setData] = useState({
         labels: [],
         datasets: [
@@ -31,11 +32,13 @@ function HashtagLifetimeChart({ options, batchSize }) {
     })
 
     const fetchHashtags = async () => {
-        const res = await fetch(`twitter/retrieve-hashtag-list`)
+        const res = await fetch(
+            `twitter/retrieve-hashtag-list?batchSize=${batchSize}&timespan=${timespan}`
+        )
         const rows = await res.json()
 
         setHashtags(prev => rows.map(row => row.hashtag))
-        setHashtag(prev => rows[0].hashtag)
+        setHashtag(prev => rows[0]?.hashtag)
     }
 
     useEffect(() => {
