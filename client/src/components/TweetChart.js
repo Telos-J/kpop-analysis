@@ -3,7 +3,7 @@ import HashtagFrequencyChart from './HashtagFrequencyChart'
 import HashtagLifetimeChart from './HashtagLifetimeChart'
 
 function TweetChart() {
-    const [batchSize, setBatchSize] = useState(1000)
+    const [batchSize, setBatchSize] = useState(5000)
     const [options, setOptions] = useState({
         maintainAspectRatio: false,
         layout: {

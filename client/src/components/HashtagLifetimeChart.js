@@ -19,7 +19,7 @@ function HashtagLifetimeChart({ options, batchSize }) {
 
     const [hashtags, setHashtags] = useState([])
     const [hashtag, setHashtag] = useState('')
-    const [timespan, setTimespan] = useState(2)
+    const [timespan, setTimespan] = useState(3)
     const [data, setData] = useState({
         labels: [],
         datasets: [
